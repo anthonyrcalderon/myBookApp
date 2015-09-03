@@ -1,1 +1,15 @@
-<h4>Watchlist!</h4>
+<h2>Watchlist!</h2>
+
+<div style="display:flex; margin: 10px" ng-repeat= "book in watchlistBooks | orderBy: '+work[0].original_publication_year[0]._'">
+	<div style="margin: 10px">
+		<img ng-src="{{book.image_url[0]}}"/>
+	</div>
+	<div>
+		<h4>{{book.title[0]}}</h4>
+		<h5>-{{book.authors[0].author[0].name[0]}}</h5>
+		<span ng-show="book.work[0].original_publication_year[0]._">Published: {{months[book.work[0].original_publication_month[0]._]}} {{book.work[0].original_publication_day[0]._}} {{book.work[0].original_publication_year[0]._}}</span><br>
+		Add to My Watchlist<br>
+
+		
+	</div>
+</div>

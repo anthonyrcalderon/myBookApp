@@ -1,11 +1,17 @@
 var app = angular.module('myBookApp');
 
 app.controller('watchlistCtrl', function($scope, watchlistService) {
-	$scope.watchlist = [];
+	$scope.months = ['[Month]', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
 
-	$scope.watchlist.push('0590353403');
+	$scope.watchlistBookIDs = [];
+	$scope.watchlistBookIDs.push(1,2,3,4,5,6);// << Delete this
+	// Pull watchlistBookIDs from Firebase
 
-	for (var i = 0; i < $scope.watchlist.length; i++) {
-		//$scope.watchlist[i]
-	};
+	$scope.watchlistBooks = [];
+	$scope.watchlistBookIDs.forEach(function(item, index){
+		watchlistService.getBook(item).then(function(book){
+			$scope.watchlistBooks.push(book);
+		})
+	})
+	console.log($scope.watchlistBooks);// << Delete this Console.log
 });
