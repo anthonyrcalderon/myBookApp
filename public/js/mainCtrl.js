@@ -1,6 +1,6 @@
 var app = angular.module('myBookApp');
 
-app.controller('Controller', function($scope, Service) {
+app.controller('mainCtrl', function($scope, mainService) {
 	$scope.google = 'really big number!'
 
 });

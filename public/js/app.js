@@ -1,5 +1,9 @@
 var app = angular.module('myBookApp', ['ngRoute', 'firebase', 'xml']);
 
+app.constant('fbLink', {
+	url: 'https://mybookapp.firebaseio.com/'
+})
+
 app.config(function ($routeProvider) {
 	$routeProvider
 		.when('/', {
@@ -21,6 +25,10 @@ app.config(function ($routeProvider) {
 			resolve: {
 
 			}
+		})
+		.when('/book/:bookID', {
+			templateUrl: 'js/book/bookIDTmpl.html',
+			controller: 'bookID'
 		})
 		.otherwise({
 			//redirectTo: '/'

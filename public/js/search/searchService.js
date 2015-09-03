@@ -1,6 +1,6 @@
 var app = angular.module('myBookApp');
 
-app.service('searchService', function($http, $q, x2js) {
+app.service('searchService', function($http, $q) {
 
 	this.searchBooks = function(searchEntry) {
 		var dfd = $q.defer();

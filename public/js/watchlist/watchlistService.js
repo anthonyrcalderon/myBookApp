@@ -1,11 +1,10 @@
 var app = angular.module('myBookApp');
 
-app.service('watchlistService', function($http, $q) {
+app.service('watchlistService', function($http, $q, fbLink, $firebaseObject) {
 
+	// Goodreads 
 	this.getBook = function(bookID) {
 		var dfd = $q.defer();
-
-		console.log("watchlistService.getBook()"); // << DELETE THIS
 
 		$http({
 			method: 'GET',
@@ -14,14 +13,10 @@ app.service('watchlistService', function($http, $q) {
 		})
 		.then(function(res) {
 			dfd.resolve(res.data);
-			console.log(res.data);
 		},
 		function(err) {
 			dfd.reject(err);
-			console.log(err);
 		})
 		return dfd.promise;
-
-
 	}
 })
