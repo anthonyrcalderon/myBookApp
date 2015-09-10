@@ -1,9 +1,11 @@
 var app = angular.module('myBookApp');
 
-app.service('watchlistService', function($http, $q, fbLink, $firebaseObject) {
+app.service('watchlistService', function($http, $q, fbLink, $firebaseObject, $firebaseArray) {
+
+	var ref = new Firebase(fbLink.url);
 
 	// Goodreads 
-	this.getBook = function(bookID) {
+	var getBook = function(bookID) {
 		var dfd = $q.defer();
 
 		$http({
@@ -18,5 +20,30 @@ app.service('watchlistService', function($http, $q, fbLink, $firebaseObject) {
 			dfd.reject(err);
 		})
 		return dfd.promise;
+	}
+
+	this.getWatchlistBooks = function(booksArray) {
+		var ref = new Firebase (fbLink.url + '/user');
+		var sync = $firebaseObject(ref);
+		sync.$loaded().then(function() {
+			var bookIDs = sync.watchlist;
+			console.log('bookIDs: ' + bookIDs);
+			for (ID in bookIDs) {
+				console.log('ID:' + ID); // CONSOLE.LOG
+				getBook(ID).then(function(book){
+					booksArray.push(book);
+					console.log(book); // CONSOLE.LOG
+				})
+			}
+		})
+	}
+
+	this.removeFromWatchlist = function(bookID) {
+		var ref = new Firebase (fbLink.url + '/user')
+		var sync = $firebaseObject(ref);
+		sync.$loaded().then(function() {
+			delete sync.watchlist[bookID];
+			sync.$save();
+		})
 	}
 })

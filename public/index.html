@@ -15,6 +15,7 @@
     <link href="bootstrap/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href="bootstrap/bootstrap-theme.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/login/loginCSS.css">
 
     <!-- Custom styles for this template -->
     <link href="style.css" rel="stylesheet">
@@ -44,15 +45,17 @@
           <ul class="nav navbar-nav">
             <li><a href="#/search">Search</a></li>
             <li><a href="#/watchlist">Watchlist</a></li>
+            <li><a href="#/booksIveRead">Books I've Read</a></li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{username} <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{(username}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#/">Home</a></li>
-                <li><a href="#/search">Search</a></li>
-                <li><a href="#/watchlist">Watchlist</a></li>
+                <li><a href="#/Search">Search</a></li>
+                <li><a href="#/Watchlist">Watchlist</a></li>
+                <li><a href="#/BooksIveRead">Books I've Read</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">User Profile</li>
-                <li><a href="#/">Log In</a></li>
+                <li><a href="#/login">Log In</a></li>
                 <li><a href="#/">Register</a></li>
               </ul>
             </li>
@@ -127,12 +130,16 @@
     <script type="text/javascript" src='js/mainCtrl.js'></script>
     <script type="text/javascript" src='js/mainService.js'></script>
     <script type="text/javascript" src='js/home/homeCtrl.js'></script>
+    <script type="text/javascript" src='js/login/loginCtrl.js'></script>
+    <script type="text/javascript" src='js/login/loginService.js'></script>
+    <script type="text/javascript" src='js/book/bookCtrl.js'></script>
+    <script type="text/javascript" src='js/book/bookService.js'></script>
     <script type="text/javascript" src='js/search/searchCtrl.js'></script>
     <script type="text/javascript" src='js/search/searchService.js'></script>
     <script type="text/javascript" src='js/watchlist/watchlistCtrl.js'></script>
     <script type="text/javascript" src='js/watchlist/watchlistService.js'></script>
-    <script type="text/javascript" src='js/book/bookCtrl.js'></script>
-    <script type="text/javascript" src='js/book/bookService.js'></script>
+    <script type="text/javascript" src='js/booksIveRead/booksIveReadCtrl.js'></script>
+    <script type="text/javascript" src='js/booksIveRead/booksIveReadService.js'></script>
     <script type="text/javascript" src="bower_components/x2js/xml2json.js"></script>
     <script type="text/javascript" src="bower_components/angular-xml/angular-xml.js"></script>
   </body>

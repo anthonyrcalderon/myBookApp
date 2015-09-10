@@ -8,13 +8,14 @@
 
 <div style="display:flex; margin: 10px" ng-repeat= "book in searchBooks">
 	<div style="margin: 10px">
-		<img ng-src="{{book.best_book[0].image_url[0]}}"/>
+		<img ng-src="{{book.best_book[0].image_url[0]}}" ng-href='/#/book/{{book.id[0]}}'/>
 	</div>
 	<div>
-		<h4>{{book.best_book[0].title[0]}}</h4>
+		<h4><a ng-href='/#/book/{{book.best_book[0].id[0]._}}'>{{book.best_book[0].title[0]}}</a></h4>
 		<h5>-{{book.best_book[0].author[0].name[0]}}</h5>
 		<span ng-show="book.original_publication_year[0]._">Published: {{months[book.original_publication_month[0]._]}} {{book.original_publication_day[0]._}} {{book.original_publication_year[0]._}}</span><br>
-		Add to My Watchlist<br>
+		<a ng-click='addToWatchlist(book.best_book[0].id[0]._, book.best_book[0].title[0])'>Add to My Watchlist</a><br>
+		<a ng-click='addToBooksIveRead(book.best_book[0].id[0]._, book.best_book[0].title[0])'>I've read this book!!</a><br>
 
 		
 	</div>

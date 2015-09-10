@@ -1,3 +1,15 @@
-<div>
-	BOOK!
+<div style="display:flex; margin: 10px">
+	<div style="margin: 10px">
+		<img ng-src="{{book.image_url[0]}}"/ style='width: 150px;'>
+	</div>
+	<div>
+		<h2>{{book.title[0]}}</h2>
+		<h4>by <em><strong>{{book.authors[0].author[0].name[0]}}</em></strong></h4>
+		<span ng-show="book.work[0].original_publication_year[0]._">Published: {{months[book.work[0].original_publication_month[0]._]}} {{book.work[0].original_publication_day[0]._}} {{book.work[0].original_publication_year[0]._}}</span><br>
+		<em>{{book.description[0]}}</em><br>
+		<a ng-click='addToWatchlist(book.id[0])'>Add to My Watchlist</a><br>
+		<a ng-click='addToBooksIveRead(book.id[0])'>I've so totally read this book!!</a><br>
+
+
+	</div>
 </div>

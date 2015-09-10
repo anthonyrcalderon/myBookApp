@@ -10,14 +10,17 @@ app.controller('watchlistCtrl', function($scope, watchlistService, fbLink, $fire
 	// Pull watchlistBookIDs from Firebase, set to $scope.watchlistBookIDs
 	// For each bookID, retreive Book through watchlistService.getBook(bookID);
 
-	var sync = $firebaseObject(ref);
-	sync.$loaded().then(function() {
-		$scope.watchlistBookIDs = sync.watchlistBookIDs;
-		$scope.watchlistBookIDs.forEach(function(item, index){
-			watchlistService.getBook(item).then(function(book){
-				$scope.watchlistBooks.push(book);
-			})
-		})
-	})
+	watchlistService.getWatchlistBooks($scope.watchlistBooks);
+
+	$scope.removeFromWatchlist = function(bookID, title) {
+		for (i in $scope.watchlistBooks) {
+			if ($scope.watchlistBooks[i].id[0] === bookID) {
+				$scope.watchlistBooks.splice(i, 1);
+			}
+		}
+		watchlistService.removeFromWatchlist(bookID);
+
+		alert('"' + title + '" has been removed from your Watchlist.');
+	}
 
 });
