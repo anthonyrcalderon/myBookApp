@@ -4,7 +4,7 @@ app.service('loginService', function($http, $q, fbLink, $firebaseObject) {
 
 	var ref = new Firebase(fbLink.url)
 
-	this.logIn = function(email, password) {
+	this.logIn = function(email, password, username) {
 		ref.authWithPassword({
 			email: email,
 			password: password
@@ -13,8 +13,11 @@ app.service('loginService', function($http, $q, fbLink, $firebaseObject) {
 				alert('Login Failed! ' + error);
 			}
 			else {
-				alert('Welcome, ' + email + '!');
-				location.assign('#/');
+				var sync = $firebaseObject(ref);
+				sync.$loaded().then(function() {
+					alert('Welcome, ' + sync[authData.uid].username + '!');
+					location.assign('#/');
+				})
 			}
 		})
 	}

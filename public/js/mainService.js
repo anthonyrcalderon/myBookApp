@@ -5,7 +5,5 @@ app.service('mainService', function($http, $q, fbAuth, fbLink, $firebaseObject) 
 
 	this.logOut = function() {
 		ref.unauth();
-
-		alert('Bye, ' + fbAuth.username + '!\nYou are now logged out.')
 	}
 });

@@ -11,6 +11,9 @@
 			<span ng-show="book.work[0].original_publication_year[0]._">Published: {{months[book.work[0].original_publication_month[0]._]}} {{book.work[0].original_publication_day[0]._}} {{book.work[0].original_publication_year[0]._}}</span><br>
 		</div>
 	</div>
+
+	<h4 ng-show='emptyBooksIveRead'><em>You haven't read any books yet!  (At least not that we know of!)
+		Visit the <a href='/#/search'>Search</a> page to find books, and tell us what you've read!</em></h4>
 </div>
 
 <div ng-hide='loggedIn'>

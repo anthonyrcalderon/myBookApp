@@ -11,7 +11,6 @@ app.service('watchlistService', function($http, $q, fbAuth, fbLink, $firebaseObj
 		$http({
 			method: 'GET',
 			url: '/api/goodreads/book?bookID=' + bookID
-			//url: 'https://www.goodreads.com/book/bookID/' + bookID
 		})
 		.then(function(res) {
 			dfd.resolve(res.data);
@@ -22,18 +21,22 @@ app.service('watchlistService', function($http, $q, fbAuth, fbLink, $firebaseObj
 		return dfd.promise;
 	}
 
-	this.getWatchlistBooks = function(booksArray) {
+	this.getWatchlistBooks = function(booksArray, emptyWatchlist) {
 		var ref = new Firebase (fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 		sync.$loaded().then(function() {
 			var bookIDs = sync.watchlist;
-			console.log('bookIDs: ' + bookIDs);
-			for (ID in bookIDs) {
-				console.log('ID:' + ID); // CONSOLE.LOG
-				getBook(ID).then(function(book){
-					booksArray.push(book);
-					console.log(book); // CONSOLE.LOG
-				})
+
+			if (bookIDs === undefined) {
+				emptyWatchlist = true;
+			}
+			else {
+				emptyWatchlist = false;
+				for (ID in bookIDs) {
+					getBook(ID).then(function(book){
+						booksArray.push(book);
+					})
+				}
 			}
 		})
 	}

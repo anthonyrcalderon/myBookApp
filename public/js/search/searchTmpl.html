@@ -1,7 +1,9 @@
 <h3>Search Books Here!</h3>
 
-<input ng-model='searchEntry'></input>
-<button ng-click='getSearchResults()'>SEARCH</button>
+<form>
+	<input class="form-control" placeholder='Search by Title, Author, ISBN, etc.' ng-model='searchEntry' style='margin:6px 0px;'></input>
+	<button class="btn btn-default" ng-click='getSearchResults()'>SEARCH</button>
+</form>
 
 <br><br>
 

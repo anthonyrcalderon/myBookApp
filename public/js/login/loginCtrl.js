@@ -5,6 +5,6 @@ app.controller('loginCtrl', function($scope, loginService) {
 	$scope.lgPassword = '';
 
 	$scope.logIn = function() {
-		loginService.logIn($scope.lgEmail, $scope.lgPassword);
+		loginService.logIn($scope.lgEmail, $scope.lgPassword, $scope.username);
 	}
 });

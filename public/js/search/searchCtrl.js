@@ -1,7 +1,7 @@
 var app = angular.module('myBookApp');
 
 app.controller('searchCtrl', function($scope, searchService) {
-	$scope.searchEntry = "Ender's Game";
+	$scope.searchEntry = "";
 	$scope.months = ['[Month]', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
 
 

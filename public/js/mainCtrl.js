@@ -15,14 +15,12 @@ app.controller('mainCtrl', function($scope, mainService, fbAuth, fbLink, $fireba
 			sync.$loaded().then(function() {
 				$scope.username = 'user';
 				$scope.loggedIn = true;
-				console.log('ref.onAuth > authData.uid:\n  \'--> ' + authData.uid); //CONSOLE.LOG
 				fbAuth.bool = true;
 				fbAuth.uid = authData.uid;
 				$scope.username = sync[authData.uid].username;
 			})
 		}
 		else {
-			console.log('LOGGED OUT'); //CONSOLE.LOG 
 			fbAuth.bool = false;
 			fbAuth.uid = '';
 			$scope.username = 'Log In/Register'
@@ -32,6 +30,7 @@ app.controller('mainCtrl', function($scope, mainService, fbAuth, fbLink, $fireba
 	})
 
 	$scope.logOut = function() {
+		alert('Bye, ' + $scope.username + '!\nYou are now logged out.');
 		mainService.logOut();
 	}
 });

@@ -4,11 +4,8 @@ app.controller('booksIveReadCtrl', function($scope, booksIveReadService) {
 
 	$scope.booksIveRead = [];
 	$scope.months = ['[Month]', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
-	
-	// Pull watchlistBookIDs from Firebase, set to $scope.watchlistBookIDs
-	// For each bookID, retreive Book through booksIveReadService.getBook(bookID);
+	$scope.emptyBooksIveRead = false;
 
-	console.log('booksIveReadCtrl');
-	booksIveReadService.getBooksIveRead($scope.booksIveRead);
+	booksIveReadService.getBooksIveRead($scope.booksIveRead, $scope.emptyBooksIveRead);
 
 });

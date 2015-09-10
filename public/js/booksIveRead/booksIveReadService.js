@@ -19,29 +19,23 @@ app.service('booksIveReadService', function($http, $q, fbAuth, fbLink, $firebase
 		return dfd.promise;
 	}
 
-	this.getBooksIveRead = function(booksArray) {
-		console.log('booksIveReadService > getBooksIveRead');
+	this.getBooksIveRead = function(booksArray, emptyBooksIveRead) {
 		var ref = new Firebase (fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 		sync.$loaded().then(function() {
 			var bookIDs = sync.booksIveRead;
-			console.log('bookIDs: ' + bookIDs); //CONSOLE.LOG
-			for (ID in bookIDs) {
-				console.log('ID:' + ID); //CONSOLE.LOG
-				getBook(ID).then(function(book){
-					booksArray.push(book);
-					console.log(book);
-				})
+			if (bookIDs === undefined) {
+				emptyBooksIveRead = true;
+			}
+			else {
+				emptyBooksIveRead = false;
+				for (ID in bookIDs) {
+					getBook(ID).then(function(book){
+						booksArray.push(book);
+					})
+				}
 			}
 		})
 	}
 
-	// this.removeFromWatchlist = function(bookID) {
-	// 	var ref = new Firebase (fbLink.url + '/user')
-	// 	var sync = $firebaseObject(ref);
-	// 	sync.$loaded().then(function() {
-	// 		delete sync.booksIveRead[bookID];
-	// 		sync.$save();
-	// 	})
-	// }
 });
