@@ -4,6 +4,11 @@ app.constant('fbLink', {
 	url: 'https://mybookapp.firebaseio.com/'
 });
 
+app.constant('fbAuth', {
+	bool: false,
+	uid: ''
+})
+
 app.config(function($routeProvider, $httpProvider) {
  // $httpProvider.interceptors.push('httpRequestInterceptor');
 
@@ -11,9 +16,10 @@ app.config(function($routeProvider, $httpProvider) {
 		.when('/', {
 			templateUrl: 'js/home/homeTmpl.html',
 			controller: 'homeCtrl',
-			resolve: {
-
-			}
+		})
+		.when('/register', {
+			templateUrl: 'js/register/registerTmpl.html',
+			controller: 'registerCtrl'
 		})
 		.when('/login', {
 			templateUrl: 'js/login/loginTmpl.html',
@@ -22,9 +28,6 @@ app.config(function($routeProvider, $httpProvider) {
 		.when('/search', {
 			templateUrl: 'js/search/searchTmpl.html',
 			controller: 'searchCtrl',
-			resolve: {
-
-			}
 		})
 		.when('/watchlist', {
 			templateUrl: 'js/watchlist/watchlistTmpl.html',

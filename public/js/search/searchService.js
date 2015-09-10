@@ -1,6 +1,6 @@
 var app = angular.module('myBookApp');
 
-app.service('searchService', function($http, $q, fbLink, $firebaseObject) {
+app.service('searchService', function($http, $q, fbAuth, fbLink, $firebaseObject) {
 
 	this.searchBooks = function(searchEntry) {
 		var dfd = $q.defer();
@@ -22,7 +22,7 @@ app.service('searchService', function($http, $q, fbLink, $firebaseObject) {
 	};
 
 	this.addToWatchlist = function(bookID, message) {
-		var ref = new Firebase(fbLink.url + '/user');
+		var ref = new Firebase(fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 
 		sync.$loaded().then(function() {
@@ -44,7 +44,7 @@ app.service('searchService', function($http, $q, fbLink, $firebaseObject) {
 	}
 
 	this.addToBooksIveRead = function(bookID, message) {
-		var ref = new Firebase(fbLink.url + '/user');
+		var ref = new Firebase(fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 
 		sync.$loaded().then(function() {

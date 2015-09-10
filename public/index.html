@@ -47,16 +47,17 @@
             <li><a href="#/watchlist">Watchlist</a></li>
             <li><a href="#/booksIveRead">Books I've Read</a></li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{(username}} <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{username}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#/">Home</a></li>
                 <li><a href="#/Search">Search</a></li>
-                <li><a href="#/Watchlist">Watchlist</a></li>
-                <li><a href="#/BooksIveRead">Books I've Read</a></li>
+                <li ng-show='loggedIn'><a href="#/Watchlist">Watchlist</a></li>
+                <li ng-show='loggedIn'><a href="#/BooksIveRead">Books I've Read</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">User Profile</li>
-                <li><a href="#/login">Log In</a></li>
-                <li><a href="#/">Register</a></li>
+                <li ng-hide='loggedIn'><a href="#/login">Log In</a></li>
+                <li ng-hide='loggedIn'><a href="#/register">Register</a></li>
+                <li ng-show='loggedIn' ng-click='logOut()'><a href="#/">Log Out</a></li>
               </ul>
             </li>
           </ul>
@@ -132,6 +133,8 @@
     <script type="text/javascript" src='js/home/homeCtrl.js'></script>
     <script type="text/javascript" src='js/login/loginCtrl.js'></script>
     <script type="text/javascript" src='js/login/loginService.js'></script>
+    <script type="text/javascript" src='js/register/registerCtrl.js'></script>
+    <script type="text/javascript" src='js/register/registerService.js'></script>
     <script type="text/javascript" src='js/book/bookCtrl.js'></script>
     <script type="text/javascript" src='js/book/bookService.js'></script>
     <script type="text/javascript" src='js/search/searchCtrl.js'></script>

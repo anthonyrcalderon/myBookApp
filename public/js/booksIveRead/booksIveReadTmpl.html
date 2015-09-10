@@ -1,14 +1,22 @@
 <h2>Books I've Read!</h2>
 
-<div style="display:flex; margin: 10px" ng-repeat= "book in booksIveRead | orderBy: '+work[0].original_publication_year[0]._'">
-	<div style="margin: 10px">
-		<img ng-src="{{book.image_url[0]}}" ng-href='/#/book/{{book.id[0]}}'/>
+<div ng-show='loggedIn'>
+	<div style="display:flex; margin: 10px" ng-repeat= "book in booksIveRead | orderBy: '+work[0].original_publication_year[0]._'">
+		<div style="margin: 10px">
+			<img ng-src="{{book.image_url[0]}}" ng-href='/#/book/{{book.id[0]}}'/>
+		</div>
+		<div>
+			<h4><a ng-href='/#/book/{{book.id[0]}}'>{{book.title[0]}}</a></h4>
+			<h5>-{{book.authors[0].author[0].name[0]}}</h5>
+			<span ng-show="book.work[0].original_publication_year[0]._">Published: {{months[book.work[0].original_publication_month[0]._]}} {{book.work[0].original_publication_day[0]._}} {{book.work[0].original_publication_year[0]._}}</span><br>
+		</div>
 	</div>
-	<div>
-		<h4><a ng-href='/#/book/{{book.id[0]}}'>{{book.title[0]}}</a></h4>
-		<h5>-{{book.authors[0].author[0].name[0]}}</h5>
-		<span ng-show="book.work[0].original_publication_year[0]._">Published: {{months[book.work[0].original_publication_month[0]._]}} {{book.work[0].original_publication_day[0]._}} {{book.work[0].original_publication_year[0]._}}</span><br>
-		<!-- <a ng-click='removeFromWatchlist(book.id[0], book.title[0])'>Remove from My Watchlist</a><br> -->
-		
-	</div>
+</div>
+
+<div ng-hide='loggedIn'>
+	<br><br>
+	<h4><em>You need to be logged in to view the books you've read.</em></h4>
+	<br>
+	<p><a href="#/login">Log In</a></p>
+	<p><a href="#/register">Register</a></p>
 </div>

@@ -1,6 +1,8 @@
 var app = angular.module('myBookApp');
 
-app.controller('watchlistCtrl', function($scope, watchlistService, fbLink, $firebaseObject, $firebaseArray) {
+app.controller('watchlistCtrl', function($scope, watchlistService, fbAuth, fbLink, $firebaseObject) {
+
+	console.log('watchlistCtrl $scope.loggedIn=' + $scope.loggedIn)
 
 	var ref = new Firebase(fbLink.url);
 

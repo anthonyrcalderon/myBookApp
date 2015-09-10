@@ -1,6 +1,6 @@
 var app = angular.module('myBookApp');
 
-app.service('watchlistService', function($http, $q, fbLink, $firebaseObject, $firebaseArray) {
+app.service('watchlistService', function($http, $q, fbAuth, fbLink, $firebaseObject) {
 
 	var ref = new Firebase(fbLink.url);
 
@@ -23,7 +23,7 @@ app.service('watchlistService', function($http, $q, fbLink, $firebaseObject, $fi
 	}
 
 	this.getWatchlistBooks = function(booksArray) {
-		var ref = new Firebase (fbLink.url + '/user');
+		var ref = new Firebase (fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 		sync.$loaded().then(function() {
 			var bookIDs = sync.watchlist;
@@ -39,7 +39,7 @@ app.service('watchlistService', function($http, $q, fbLink, $firebaseObject, $fi
 	}
 
 	this.removeFromWatchlist = function(bookID) {
-		var ref = new Firebase (fbLink.url + '/user')
+		var ref = new Firebase (fbLink.url + '/' + fbAuth.uid)
 		var sync = $firebaseObject(ref);
 		sync.$loaded().then(function() {
 			delete sync.watchlist[bookID];

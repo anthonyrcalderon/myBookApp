@@ -1,0 +1,26 @@
+<div ng-hide='loggedIn' class="container loginTmpl">
+
+	<form class="form-signin">
+	<h2 class="form-signin-heading">Register Here</h2>
+	<label for="inputUsername" class="sr-only">Username</label>
+	<input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model='regUsername'>
+	<label for="inputEmail" class="sr-only">Email address</label>
+	<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus ng-model='regEmail'>
+	<label for="inputPassword" class="sr-only">Password</label>
+	<input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model='regPassword'>
+	<div class="checkbox">
+<!-- 		<label>
+			<input type="checkbox" value="remember-me"> Remember me
+		</label> -->
+	</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click='register();'>Register</button>
+	</form>
+
+</div> <!-- /container -->
+
+<div ng-show='loggedIn'>
+	<br><br><br>
+	<h4><em>You can't Register because you're already logged in as {{username}}</em></h4>
+	<br>
+	<a href="#/">Home</a>
+</div>

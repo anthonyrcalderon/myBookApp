@@ -1,6 +1,6 @@
 var app = angular.module('myBookApp');
 
-app.service('booksIveReadService', function($http, $q, fbLink, $firebaseObject) {
+app.service('booksIveReadService', function($http, $q, fbAuth, fbLink, $firebaseObject) {
 
 	// Goodreads
 	var getBook = function(bookID) {
@@ -21,7 +21,7 @@ app.service('booksIveReadService', function($http, $q, fbLink, $firebaseObject) 
 
 	this.getBooksIveRead = function(booksArray) {
 		console.log('booksIveReadService > getBooksIveRead');
-		var ref = new Firebase (fbLink.url + '/user');
+		var ref = new Firebase (fbLink.url + '/' + fbAuth.uid);
 		var sync = $firebaseObject(ref);
 		sync.$loaded().then(function() {
 			var bookIDs = sync.booksIveRead;
